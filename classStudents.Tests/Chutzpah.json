@@ -1,0 +1,27 @@
+﻿{
+  "Framework": "jasmine",
+  "RootReferencePathMode": "SettingsFileDirectory",
+  "References": [
+    { "Path": "Scripts/angular.js" },
+    { "Path": "scripts/angular-resource.js" },
+    { "Path": "Scripts/angular-route.js" },
+    { "Path": "Scripts/angular-mocks.js" },
+    { "Path": "scripts/jasmine.js" },
+    { "Path": "../classstudents/app/app.js" },
+    {
+      "Path": "../classStudents/app/Services",
+      "Include": "*.js"
+    },
+    {
+      "Path": "../classStudents/app/Controllers",
+      "Include": "*.js"
+    }
+  ],
+  "Tests": [
+    {
+      "Path": "Tests/AngularControllersTests",
+      "Include": "*.js" 
+    }
+
+  ]
+}

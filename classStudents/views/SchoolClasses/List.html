@@ -1,0 +1,19 @@
+﻿<div ng-init="init();">
+    <h2>School Classes</h2>
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Class Name</th>
+            <th>Location</th>
+            <th>Teacher Name</th>
+            <th><input type="button" ng-click="go('/Add');" value="Add" class="btn-primary" /></th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="schoolClass in schoolClasses | orderBy : 'className'" ng-class="{'selected':$index == selectedRow}"  ng-click="setClickedRow($index,schoolClass.Id );">
+            <td>{{schoolClass.className}}</td>
+            <td>{{schoolClass.Location}}</td>
+            <td>{{schoolClass.teacherName}}</td>
+            <td><input type="button" ng-click="go('/' + schoolClass.Id + '/Edit');$event.stopPropagation();" value="Edit" class="btn-xs btn-success" /></td>
+            <td><input type="button" ng-click="go('/' + schoolClass.Id + '/Delete');$event.stopPropagation();" value="Delete" class="btn-xs btn-danger" /></td>
+        </tr>
+    </table>
+</div>

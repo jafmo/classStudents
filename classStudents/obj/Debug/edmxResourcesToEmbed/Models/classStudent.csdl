@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="classStudentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="className" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="teacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="classStudents" Relationship="Self.FK_class_ToStudent" FromRole="class" ToRole="classStudent" />
+  </EntityType>
+  <EntityType Name="classStudent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="classId" Type="Int32" />
+    <Property Name="studentId" Type="Int32" />
+    <NavigationProperty Name="class" Relationship="Self.FK_class_ToStudent" FromRole="classStudent" ToRole="class" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_StudentToClass" FromRole="classStudent" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="studentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="GPA" Type="Decimal" Precision="18" Scale="1" />
+    <NavigationProperty Name="classStudents" Relationship="Self.FK_StudentToClass" FromRole="Student" ToRole="classStudent" />
+  </EntityType>
+  <Association Name="FK_class_ToStudent">
+    <End Role="class" Type="Self.class" Multiplicity="0..1" />
+    <End Role="classStudent" Type="Self.classStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="classStudent">
+        <PropertyRef Name="classId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentToClass">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="classStudent" Type="Self.classStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="classStudent">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="classStudentsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="classes" EntityType="Self.class" />
+    <EntitySet Name="classStudents" EntityType="Self.classStudent" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK_class_ToStudent" Association="Self.FK_class_ToStudent">
+      <End Role="class" EntitySet="classes" />
+      <End Role="classStudent" EntitySet="classStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentToClass" Association="Self.FK_StudentToClass">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="classStudent" EntitySet="classStudents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

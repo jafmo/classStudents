@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="classStudentsModelStoreContainer" CdmEntityContainer="classStudentsEntities">
+    <EntitySetMapping Name="classes">
+      <EntityTypeMapping TypeName="classStudentsModel.class">
+        <MappingFragment StoreEntitySet="class">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="className" ColumnName="className" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="teacherName" ColumnName="teacherName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="classStudents">
+      <EntityTypeMapping TypeName="classStudentsModel.classStudent">
+        <MappingFragment StoreEntitySet="classStudent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="classId" ColumnName="classId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="classStudentsModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="studentName" ColumnName="studentName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="GPA" ColumnName="GPA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

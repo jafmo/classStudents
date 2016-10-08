@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="classStudentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="className" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" />
+    <Property Name="teacherName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="classStudent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="classId" Type="int" />
+    <Property Name="studentId" Type="int" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="studentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="GPA" Type="decimal" Precision="18" Scale="1" />
+  </EntityType>
+  <Association Name="FK_class_ToStudent">
+    <End Role="class" Type="Self.class" Multiplicity="0..1" />
+    <End Role="classStudent" Type="Self.classStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="classStudent">
+        <PropertyRef Name="classId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentToClass">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="classStudent" Type="Self.classStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="classStudent">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="classStudentsModelStoreContainer">
+    <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="classStudent" EntityType="Self.classStudent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_class_ToStudent" Association="Self.FK_class_ToStudent">
+      <End Role="class" EntitySet="class" />
+      <End Role="classStudent" EntitySet="classStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentToClass" Association="Self.FK_StudentToClass">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="classStudent" EntitySet="classStudent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

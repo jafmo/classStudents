@@ -1,0 +1,19 @@
+﻿<div ng-init="init();">
+    <h2>Students in "{{schoolClassName}}" class</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Student Name</th>
+            <th>Age</th>
+            <th>GPA</th>
+            <th><input type="button" ng-click="go('/students/' + schoolClassId +'/Add');" value="Add" class="btn-primary" /></th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="student in students" ng-class="{'warning':student.GPA > 3.2}">
+            <td>{{student.firstname}} {{student.surname}}</td>
+            <td>{{student.Age}}</td>
+            <td>{{student.GPA}}</td>
+            <td><input type="button" ng-click="go('/students/' + student.Id + '/Edit');" value="Edit" class="btn-xs btn-success" /></td>
+            <td><input type="button" ng-click="go('/students/' + student.Id + '/Delete')" value="Delete" class="btn-xs btn-danger" /></td>
+        </tr>
+    </table>
+</div>

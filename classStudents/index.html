@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html ng-app="schoolClassStudentsApp">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="styles/Site.css" rel="stylesheet" />
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/Services/SchoolClassService.js"></script>
+    <script src="app/Controllers/SchoolClassController.js"></script>
+    <script src="app/Services/StudentService.js"></script>
+    <script src="app/Controllers/StudentController.js"></script>
+</head>
+<body>
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main" class="container" ng-controller="SchoolClassController">
+        <a href="#/" class="btn-lg btn-primary">Home</a>
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view>
+
+
+        </div>
+    </div>
+
+
+</body>
+</html>

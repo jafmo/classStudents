@@ -1,0 +1,27 @@
+﻿<div ng-init="loadEdit();">
+    <h2>Edit School Class</h2>
+    <form>
+        <fieldset>
+            <div class="form-group row">
+                <label for="id" class="col-sm-1 form-control-label">Id</label>
+                    <input type="text" disabled id="id" name="id" ng-model="selectedSchoolClass.Id" />
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-1 form-control-label">Class Name</label>
+                    <input type="text" id="name" name="name" ng-model="selectedSchoolClass.className" />
+            </div>
+            <div class="form-group row">
+                <label for="price" class="col-sm-1 form-control-label">Location</label>
+                    <input type="text" id="price" name="price" ng-model="selectedSchoolClass.Location" />
+            </div>
+            <div class="form-group row">
+                <label for="price" class="col-sm-1 form-control-label">Teacher Name</label>
+                <input type="text" id="price" name="price" ng-model="selectedSchoolClass.teacherName" />
+            </div>
+            <div class="form-group row">
+                <input type="button" value="Cancel" ng-click="go('/');" class="btn btn-primary" />
+                <input type="submit" value="Submit" ng-click="updateSchoolClass(selectedSchoolClass);" class="btn btn-primary" />
+            </div>
+        </fieldset>
+     </form>
+</div>
